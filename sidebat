@@ -1,0 +1,57 @@
+<button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
+<div class="overlay" id="overlay"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-nav">
+    <a href="#" class="has-subnav">Employee Services</a>
+    <div class="sub-nav">
+      <a href="ess-claims.html">ESS</a>
+      <a href="dnmy-application.html">M365</a>
+      <a href="http://dnmy0059.ap.denso.com/ecanteen/Default.aspx">E-Canteen Value Check</a>
+      <a href="https://globaldenso.sharepoint.com/sites/AP000018/DNMYIPI/SitePages/Home.aspx?xsdata=MDV8MDJ8fGViZTMzNmJiZTAwMjRjOTM1YTU1MDhkZGJjZWFiNzVhfDY5NDA1OTIwYjY3MzRmN2M4ODQ1ZTEyNGU5ZDA4YWYyfDB8MHw2Mzg4NzQ0Mzg0NDA5OTk1MDl8VW5rbm93bnxWR1ZoYlhOVFpXTjFjbWwwZVZObGNuWnBZMlY4ZXlKRFFTSTZJbFJsWVcxelgwRlVVRk5sY25acFkyVmZVMUJQVEU5R0lpd2lWaUk2SWpBdU1DNHdNREF3SWl3aVVDSTZJbGRwYmpNeUlpd2lRVTRpT2lKUGRHaGxjaUlzSWxkVUlqb3hNWDA9fDF8TDJOb1lYUnpMekU1T2pRd01XTXhPRFprTFRrME0yTXRORGt4TkMwNU9UbGpMVGRtTWprelkyTTNPV1kyWlY5ak1XUmhPVE5oTVMwMlltTmtMVFE1Wm1JdE9EUmtNaTFrWVRjNU1qUTFOamMxTVRWQWRXNXhMbWRpYkM1emNHRmpaWE12YldWemMyRm5aWE12TVRjMU1UZzBOekEwTXpJME1nPT18N2FkMWZmN2E2MDA5NGZlMTVhNTUwOGRkYmNlYWI3NWF8OGViMTNiYTIwYWUxNGY4YTgyNjQzNGI0YzcxNTdiNDU%3D&sdata=dDZUYTRxUVJyNTFTancyUlRoUkRJQzRKTFl5NSt5M1pZZlVKNjJhb3FWST0%3D&ovuser=69405920-b673-4f7c-8845-e124e9d08af2%2Cfookchoy.lee.a9a%40ap.denso.com&OR=Teams-HL&CT=1751847624092&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNTA2MTIxNjQyMCIsIkhhc0ZlZGVyYXRlZFVzZXIiOmZhbHNlfQ%3D%3D">IPi-Portal</a>
+    </div>
+    <a href="cybersecurity-guide.html">Cybersecurity/General User Guide</a>
+    <a href="general-information.html">General Information</a>
+    <a href="#" class="has-subnav">Financial & Asset Services</a>
+    <div class="sub-nav">
+      <a href="https://fmsas-globaldenso.msappproxy.net/jcms/login.do">Job Cost Management System (FA-JCMS)</a>
+      <a href="https://fmsas-globaldenso.msappproxy.net/fams/login.do">Fixed Asset Management Management System (FA-FAMS)</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/f8acf7c8-024d-48df-a9a3-97a8846cdc7f?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&sourcetime=1736899630977">FA-CAM/Phone Scrap</a>
+      <a href="http://10.97.7.20/">Yellowfin Expenses</a>
+    </div>
+    <a href="#" class="has-subnav">Requisition Form</a>
+    <div class="sub-nav">
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/6f76d5f2-497f-474e-95d6-631b275a28b0?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=4825166d-7410-4383-9926-c333723707e3&sourcetime=1747354698326​">ISD Bring In/Out Form</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/fc716bad-3c0c-49a1-9f59-0aa0af6d8e82?tenantId=69405920-b673-4f7c-8845-e124e9d08af2">ISD Pool Hardware Reservation</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/074bf78b-33da-46c2-863a-998578c8a202?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=5ec9a550-ac7d-4e17-b326-da1d5ceda89b&sourcetime=1715746766184#">ISD UAT Form</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/c8c20eff-5fd7-49f7-8b75-1c7388be5994?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=eb2a21c5-456c-4c74-bcc1-752a30d52328&sourcetime=1703118206180">GA DNMY Guarantee Letter (GL)</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/76d49830-5dd7-4245-a083-a87d26a18095?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&sourcetime=1739934631808">GA Denso Uniform Requisition Apps (DURA)</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/f9027e22-19e0-40bb-9fdc-0d4814eacfc2?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=952f0b6b-024c-4cde-951f-aefe20ccc3b3&sourcetime=1758679360350">GA Visitor Reception Information & Preparation (DVRA)</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/e08b7103-f7b7-47ca-af6c-47e0f8b42895?tenantId=69405920-b673-4f7c-8845-e124e9d08af2">GA Company Car Service & Repair Request Form (CCSR)</a>
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/535571de-e9ca-4d88-8c69-3b7630e34c59?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=ae2ae76b-0ecb-4a3b-889b-f309776526a7&sourcetime=1751420707412">HR Employee Req Form (ERF)</a>
+    </div>
+    <a href="#" class="has-subnav">Local System</a>
+    <div class="sub-nav">
+      <a href="https://apps.powerapps.com/play/e/default-69405920-b673-4f7c-8845-e124e9d08af2/a/2e9958f0-45e7-4181-846d-39066c3342fd?tenantId=69405920-b673-4f7c-8845-e124e9d08af2&hint=fadb0874-b5c6-47fd-83a4-dasia.denso/SKSS/Common/Common_Login.aspx">Auto Invoice Generation (AIG)</a>
+      <a href="http://dnmy0014b.ap.denso.com/SKSS/Common/Common_Login.aspx">SKSS</a>
+      <a href="http://dnmy0014a.ap.denso.com/IQIS/Common/Common_Login.aspx">IQIS</a>
+      <a href="http://dnmy0014a.ap.denso.com/edipo/">EDIPO</a>
+      <a href="http://10.122.65.91:8787/motionboard/login">Motion Board (MB)</a>
+      <a href="http://dnmy0014a.ap.denso.com/MPulse#/">Mpulse</a>
+      <a href="http://dnmy0014a.ap.denso.com/DIMS/">DIMS</a>
+      <a href="http://dnmy0055a/Reports/report/QR%20CIGMA/DSM%20vs%20GFA%20Lot">GFA Checker</a>
+      <a href="http://dnmy0045c/dnmyportal/images/Traceability%20Check.htm">Prod Traceability System</a>
+    </div>
+    <a href="denso-global.html">DENSO Global</a>
+    <a href="customer.html">Customer</a>
+    <a href="other-business.html">Other Business Related</a>
+  </div>
+  <div class="sidebar-footer">
+    © 2025 DNMY Portal
+  </div>
+</nav>
