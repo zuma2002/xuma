@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/_head', { pageTitle: pageTitle }) %>
+</head>
+<body>
+    <header class="top-header">
+        <div class="header-container">
+            <a href="#home" class="header-logo">
+                <img src="/images/logo.png.png" alt="DNMY Portal">
+            </a>
+            <nav class="header-nav" id="headerNav">
+                <a href="#home" class="header-link active">Home</a>
+                <a href="#about" class="header-link">About</a>
+                <a href="#contact" class="header-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    <%- include('./partials/_sidebar') %>
+    
+    <div class="main-content">
+        <%- body %>
+    </div>
+    
+    <footer>
+        <p>© 2025 DNMY Portal. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Sidebar toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        function toggleSidebar() {
+          menuBtn.classList.toggle('open');
+          sidebar.classList.toggle('open');
+          overlay.classList.toggle('show');
+        }
+        
+        menuBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        
+        // Header nav links
+        const headerLinks = document.querySelectorAll('.header-link');
+        headerLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = link.getAttribute('href');
+            
+            headerLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+            
+            document.querySelector(target).scrollIntoView({
+              behavior: 'smooth'
+            });
+          });
+        });
+        
+        // Sidebar nav links - close sidebar only for non-subnav links
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+        sidebarLinks.forEach(link => {
+          link.addEventListener('click', (e) => {
+            if (!link.classList.contains('has-subnav') && sidebar.classList.contains('open')) {
+              toggleSidebar();
+            }
+          });
+        });
+        
+        // Sub-nav toggle for sidebar
+        document.querySelectorAll('.sidebar-nav .has-subnav').forEach(item => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const subNav = item.nextElementSibling;
+            const isOpen = subNav.classList.contains('open');
+            subNav.classList.toggle('open', !isOpen);
+            item.classList.toggle('open', !isOpen);
+          });
+        });
+
+        // Scroll-based active link and animations
+        window.addEventListener('scroll', () => {
+          const sections = document.querySelectorAll('section[id]');
+          let current = '';
+          
+          sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+              current = section.getAttribute('id');
+            }
+            
+            // Apply in-view animations only to specific elements, excluding news-section
+            const elements = section.querySelectorAll('.in-view-element:not(.news-card):not(.section-header)');
+            elements.forEach(el => {
+              const rect = el.getBoundingClientRect();
+              if (rect.top < window.innerHeight - 100) {
+                el.classList.add('in-view');
+              }
+            });
+          });
+          
+          headerLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
+            }
+          });
+          
+          if (window.scrollY > 50) {
+            document.querySelector('.top-header').classList.add('scrolled');
+          } else {
+            document.querySelector('.top-header').classList.remove('scrolled');
+          }
+        });
+        
+        // Apply in-view class to elements excluding news section
+        document.querySelectorAll('.contact-card, .about-text, .about-image, .weather-card, .calendar-card').forEach(el => {
+          el.classList.add('in-view-element');
+        });
+        
+        // Weather widget initialization
+        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+        
+        // Calendar generation
+        function generateCalendar() {
+          const now = new Date('October 02, 2025 16:16:00 +0800');
+          const currentDay = now.getDate();
+          const currentMonth = now.getMonth();
+          const currentYear = now.getFullYear();
+          
+          document.getElementById('currentDay').textContent = currentDay;
+          const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+          document.getElementById('monthYear').textContent = `${monthNames[currentMonth]} ${currentYear}`;
+          
+          const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+          document.getElementById('dayName').textContent = dayNames[now.getDay()];
+          
+          const calendarGrid = document.getElementById('calendarGrid');
+          calendarGrid.innerHTML = '';
+          
+          const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+          dayHeaders.forEach(day => {
+            const header = document.createElement('div');
+            header.className = 'calendar-day header';
+            header.textContent = day;
+            calendarGrid.appendChild(header);
+          });
+          
+          const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+          const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+          const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+          
+          for (let i = firstDay - 1; i >= 0; i--) {
+            const day = document.createElement('div');
+            day.className = 'calendar-day other-month';
+            day.textContent = daysInPrevMonth - i;
+            calendarGrid.appendChild(day);
+          }
+          
+          for (let i = 1; i <= daysInMonth; i++) {
+            const day = document.createElement('div');
+            day.className = 'calendar-day';
+            if (i === currentDay) {
+              day.classList.add('today');
+            }
+            day.textContent = i;
+            calendarGrid.appendChild(day);
+          }
+          
+          const totalCells = calendarGrid.children.length - 7;
+          const remainingCells = 35 - totalCells;
+          for (let i = 1; i <= remainingCells; i++) {
+            const day = document.createElement('div');
+            day.className = 'calendar-day other-month';
+            day.textContent = i;
+            calendarGrid.appendChild(day);
+          }
+        }
+        
+        generateCalendar();
+
+        // News carousel
+        let currentIndex = 0;
+        let slideWidth = 0;
+        let visibleCards = 3;
+        let cardCount = 0;
+        let newsGrid = null;
+        let slideInterval;
+        const originalCards = Array.from(document.querySelectorAll('.news-grid .news-card'));
+
+        function initializeCarousel() {
+          newsGrid = document.querySelector('.news-grid');
+          if (!newsGrid) return;
+          cardCount = originalCards.length;
+
+          // Clear existing content
+          newsGrid.innerHTML = '';
+
+          // Add multiple sets of original cards for continuous looping
+          for (let i = 0; i < 3; i++) {
+            originalCards.forEach(card => {
+              newsGrid.appendChild(card.cloneNode(true));
+            });
+          }
+
+          newsGrid.style.display = 'flex';
+          newsGrid.style.gap = '2rem';
+          newsGrid.style.transition = 'transform 0.5s ease';
+          newsGrid.style.visibility = 'visible';
+
+          // Calculate slide width after cards are added to DOM
+          setTimeout(() => {
+            const gap = parseFloat(getComputedStyle(newsGrid).gap) || 0;
+            slideWidth = newsGrid.children[0].offsetWidth + gap;
+            newsGrid.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+            newsGrid.querySelectorAll('.news-card').forEach(card => {
+              card.style.visibility = 'visible';
+              card.classList.add('in-view');
+            });
+          }, 0);
+        }
+
+        function slideNext() {
+          currentIndex = (currentIndex + 1) % cardCount;
+          newsGrid.style.transition = 'transform 0.5s ease';
+          newsGrid.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+          newsGrid.style.visibility = 'visible';
+        }
+
+        function slidePrev() {
+          currentIndex = (currentIndex - 1 + cardCount) % cardCount;
+          newsGrid.style.transition = 'transform 0.5s ease';
+          newsGrid.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+          newsGrid.style.visibility = 'visible';
+        }
+
+        function startSlide() {
+          clearInterval(slideInterval);
+          slideInterval = setInterval(slideNext, 3000);
+        }
+
+        // Initialize carousel and navigation buttons
+        document.addEventListener('DOMContentLoaded', () => {
+          initializeCarousel();
+          startSlide();
+          // Ensure news section is visible initially
+          document.querySelector('.news-section').style.visibility = 'visible';
+          document.querySelector('.news-carousel').style.visibility = 'visible';
+          document.querySelector('.news-grid').style.visibility = 'visible';
+
+          // Navigation button event listeners
+          const prevBtn = document.querySelector('.prev-btn');
+          const nextBtn = document.querySelector('.next-btn');
+
+          prevBtn.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            slidePrev();
+            setTimeout(startSlide, 5000); // Resume auto-slide after 5 seconds
+          });
+
+          nextBtn.addEventListener('click', () => {
+            clearInterval(slideInterval);
+            slideNext();
+            setTimeout(startSlide, 5000); // Resume auto-slide after 5 seconds
+          });
+        });
+
+        // Handle carousel looping
+        if (newsGrid) {
+          newsGrid.addEventListener('transitionend', () => {
+            if (currentIndex >= cardCount) {
+              newsGrid.style.transition = 'none';
+              currentIndex = currentIndex % cardCount;
+              newsGrid.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+              newsGrid.style.visibility = 'visible';
+              setTimeout(() => {
+                newsGrid.style.transition = 'transform 0.5s ease';
+              }, 0);
+            } else if (currentIndex < 0) {
+              newsGrid.style.transition = 'none';
+              currentIndex = (currentIndex + cardCount) % cardCount;
+              newsGrid.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+              newsGrid.style.visibility = 'visible';
+              setTimeout(() => {
+                newsGrid.style.transition = 'transform 0.5s ease';
+              }, 0);
+            }
+          });
+        }
+    </script>
+</body>
+</html>
